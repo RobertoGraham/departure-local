@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  departure-api:
+    build: ../departure-api
+    environment:
+      - TRANSPORT_API_CLIENT_APPLICATION_ID
+      - TRANSPORT_API_CLIENT_APPLICATION_KEY
+  departure-app:
+    build: ../departure-app
+    depends_on:
+      - departure-api
+    environment:
+      DEPARTURE_API_URL: http://departure-api:8080
+    ports:
+      - "3000:80"
