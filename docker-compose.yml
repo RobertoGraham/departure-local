@@ -2,11 +2,13 @@ version: "3.7"
 services:
   departure-api:
     build: ../departure-api
+    image: docker.pkg.github.com/robertograham/departure-api/departure-api
     environment:
       - TRANSPORT_API_CLIENT_APPLICATION_ID
       - TRANSPORT_API_CLIENT_APPLICATION_KEY
   departure-app:
     build: ../departure-app
+    image: docker.pkg.github.com/robertograham/departure-app/departure-app
     depends_on:
       - departure-api
     environment:
